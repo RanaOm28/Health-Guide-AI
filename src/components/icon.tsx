@@ -12,6 +12,8 @@ export type IconName =
   | "heart"
   | "leaf"
   | "lock"
+  | "male"
+  | "female"
   | "moon"
   | "settings"
   | "shield"
@@ -88,6 +90,22 @@ const iconPaths: Record<IconName, ReactNode> = {
     <>
       <rect x="4" y="10" width="16" height="11" rx="2" />
       <path d="M8 10V7a4 4 0 1 1 8 0v3M12 14v3" />
+    </>
+  ),
+  male: (
+    <>
+      <circle cx="10" cy="8" r="4" />
+      <path d="M13 12h5v5" />
+      <path d="M18 12 13 17" />
+      <path d="M5 19c2-3 4-4 7-4s5 1 7 4" />
+    </>
+  ),
+  female: (
+    <>
+      <circle cx="12" cy="7" r="4" />
+      <path d="M12 11v8" />
+      <path d="M9 14h6" />
+      <path d="M8 20c1.7-2 3-3 4-3s2.3 1 4 3" />
     </>
   ),
   moon: (

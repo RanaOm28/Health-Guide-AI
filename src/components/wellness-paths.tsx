@@ -1,27 +1,32 @@
+import Link from "next/link";
 import { Icon, type IconName } from "@/components/icon";
 
 const paths: {
   title: string;
   description: string;
   icon: IconName;
+  href: string;
 }[] = [
   {
     title: "Lose weight steadily",
     description:
       "Build supportive routines around movement, meals, sleep, and consistency—at a pace that feels sustainable.",
     icon: "activity",
+    href: "/lose-weight-steadily",
   },
   {
     title: "Gain weight mindfully",
     description:
       "Track your progress and plan nourishing habits that support your personal goals and preferences.",
     icon: "heart",
+    href: "/gain-weight-mindfully",
   },
   {
     title: "Feel stronger and healthier",
     description:
       "Focus on everyday wellbeing, celebrate small wins, and shape goals that are about more than a number.",
     icon: "sparkle",
+    href: "/feel-stronger-and-healthier",
   },
 ];
 
@@ -52,8 +57,8 @@ export function WellnessPaths() {
         </div>
         <div className="wellness-paths-content">
           <div className="goal-card-grid">
-            {paths.map(({ title, description, icon }) => (
-              <article className="goal-card" key={title}>
+            {paths.map(({ title, description, icon, href }) => (
+              <Link className="goal-card" href={href} key={title}>
                 <span className="feature-icon">
                   <Icon name={icon} />
                 </span>
@@ -61,7 +66,7 @@ export function WellnessPaths() {
                   <h3>{title}</h3>
                   <p>{description}</p>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
           <div aria-label="Illustrative weekly progress chart" className="progress-preview">

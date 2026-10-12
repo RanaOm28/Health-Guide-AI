@@ -6,11 +6,17 @@ import { Icon } from "@/components/icon";
 type Analysis = {
   bmi: number;
   age: number;
+  gender: "male" | "female";
   heightCm: number;
   lowerWeight: number;
   upperWeight: number;
   category: "below" | "within" | "above";
 };
+
+const genderOptions = [
+  { value: "male", label: "Male", icon: "male" as const },
+  { value: "female", label: "Female", icon: "female" as const },
+];
 
 const nutritionGuidance = {
   below: {
@@ -64,6 +70,7 @@ export function WellnessCalculator() {
     const feet = Number(formData.get("heightFeet"));
     const inches = Number(formData.get("heightInches"));
     const age = Number(formData.get("age"));
+    const gender = (formData.get("gender") as "male" | "female") || "male";
     const totalInches = feet * 12 + inches;
     const heightMeters = totalInches * 0.0254;
 
@@ -95,13 +102,15 @@ export function WellnessCalculator() {
     const bmi = weight / (heightMeters * heightMeters);
     const category: Analysis["category"] =
       bmi < 18.5 ? "below" : bmi < 25 ? "within" : "above";
+    const femaleAdjustment = gender === "female" ? 2.5 : 0;
 
     const result: Analysis = {
       bmi,
       age,
+      gender,
       heightCm: totalInches * 2.54,
-      lowerWeight: 18.5 * heightMeters * heightMeters,
-      upperWeight: 24.9 * heightMeters * heightMeters,
+      lowerWeight: 18.5 * heightMeters * heightMeters - femaleAdjustment,
+      upperWeight: 24.9 * heightMeters * heightMeters - femaleAdjustment,
       category,
     };
 
@@ -116,16 +125,16 @@ export function WellnessCalculator() {
   const categoryCopy = analysis
     ? {
         below: {
-          label: "Below the adult reference range",
+          label: "Underweight",
           message: "This estimate alone cannot explain your health or what your body needs. Consider discussing it with a healthcare professional, especially before trying to change your weight.",
         },
         within: {
-          label: "Within the adult reference range",
+          label: "Healthy range",
           message:
             "This screening result falls within the usual adult BMI reference range. BMI is only one measure and does not describe your overall health.",
         },
         above: {
-          label: "Above the adult reference range",
+          label: "Overweight",
           message:
             "This result is not a diagnosis and does not account for muscle, body composition, or your individual health context.",
         },
@@ -182,6 +191,28 @@ export function WellnessCalculator() {
                 type="number"
               />
             </label>
+
+            <div className="gender-field">
+              <span>Gender</span>
+              <div className="gender-selector" role="radiogroup" aria-label="Gender">
+                {genderOptions.map(({ value, label, icon }) => (
+                  <label className="gender-option" key={value}>
+                    <input
+                      defaultChecked={value === "male"}
+                      name="gender"
+                      type="radio"
+                      value={value}
+                    />
+                    <span className="gender-content">
+                      <span className="gender-icon">
+                        <Icon name={icon} />
+                      </span>
+                      <span>{label}</span>
+                    </span>
+                  </label>
+                ))}
+              </div>
+            </div>
 
             <fieldset className="height-fieldset">
               <legend>Height</legend>
@@ -295,9 +326,14 @@ export function WellnessCalculator() {
                   </div>
                 </div>
                 <div className={`analysis-category category-${analysis.category}`}>
-                  <Icon name={analysis.category === "within" ? "check" : "heart"} />
+                  <span aria-hidden="true" className="status-swatch" />
                   <span>{categoryCopy.label}</span>
                 </div>
+                {analysis.gender === "female" && (
+                  <p className="analysis-gender-note">
+                    Female estimate: the reference range is adjusted to be about 2–3 kg lower than the standard adult range.
+                  </p>
+                )}
                 <p className="analysis-copy">{categoryCopy.message}</p>
                 <div className="nutrition-guidance">
                   <span className="nutrition-label">
