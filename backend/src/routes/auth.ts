@@ -21,12 +21,12 @@ const registrationSchema = credentialsSchema.extend({
 });
 
 const publicUser = (user: {
-  id: string;
+  _id: { toString(): string };
   name: string;
   email: string;
   goal: string;
 }) => ({
-  id: user.id,
+  id: user._id.toString(),
   name: user.name,
   email: user.email,
   goal: user.goal,
