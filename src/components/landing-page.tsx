@@ -1,6 +1,8 @@
+import { AboutSection } from "@/components/about-section";
 import { Features } from "@/components/features";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import { HealthGuideInsights } from "@/components/healthguide-insights";
 import { HydrationEstimator } from "@/components/hydration-estimator";
 import { Hero } from "@/components/hero";
 import { Stats } from "@/components/stats";
@@ -22,6 +24,8 @@ export function LandingPage() {
         <WellnessCalculator />
         <WellnessPaths />
         <HydrationEstimator />
+        <HealthGuideInsights />
+        <AboutSection />
       </main>
       <Footer />
     </>

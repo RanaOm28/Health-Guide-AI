@@ -19,6 +19,7 @@ export type IconName =
   | "shield"
   | "sparkle"
   | "star"
+  | "sun"
   | "users";
 
 type IconProps = SVGProps<SVGSVGElement> & {
@@ -134,6 +135,12 @@ const iconPaths: Record<IconName, ReactNode> = {
   star: (
     <>
       <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3Z" />
+    </>
+  ),
+  sun: (
+    <>
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2.5M12 19.5V22M4.93 4.93l1.77 1.77M17.3 17.3l1.77 1.77M2 12h2.5M19.5 12H22M4.93 19.07l1.77-1.77M17.3 6.7l1.77-1.77" />
     </>
   ),
   users: (

@@ -71,7 +71,7 @@ export function HydrationEstimator() {
   }
 
   return (
-    <section aria-labelledby="hydration-title" className="hydration-section">
+    <section aria-labelledby="hydration-title" className="hydration-section" id="hydration">
       <div className="site-shell hydration-layout">
         <div className="hydration-intro">
           <span className="eyebrow section-eyebrow">
