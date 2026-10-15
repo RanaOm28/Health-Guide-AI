@@ -12,18 +12,6 @@
   --mint-bright: #45f0c6;
 }
 
-html.light-mode {
-  color-scheme: light;
-  --background: #f5f9f8;
-  --surface: #ffffff;
-  --surface-raised: #edf5f4;
-  --line: rgba(18, 40, 39, 0.1);
-  --muted: #5c6f6f;
-  --foreground: #111d1b;
-  --mint: #12a87c;
-  --mint-bright: #10a070;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -58,11 +46,6 @@ body {
   transition: background 180ms ease, color 180ms ease;
 }
 
-html.light-mode body {
-  background: var(--background);
-  color: var(--foreground);
-}
-
 body::before {
   position: fixed;
   z-index: -1;
@@ -73,13 +56,6 @@ body::before {
     var(--background);
   content: "";
   pointer-events: none;
-}
-
-html.light-mode body::before {
-  background:
-    radial-gradient(ellipse at 78% 5%, rgba(18, 168, 124, 0.12), transparent 34rem),
-    radial-gradient(ellipse at 1% 37%, rgba(36, 160, 154, 0.08), transparent 28rem),
-    var(--background);
 }
 
 [id] {
@@ -107,6 +83,259 @@ a:focus-visible {
   margin-inline: auto;
 }
 
+.checkin-section {
+  padding: 64px 0 32px;
+}
+
+.checkin-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.25fr);
+  gap: 32px;
+  align-items: center;
+}
+
+.checkin-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.checkin-intro h2 {
+  margin: 0;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  line-height: 0.98;
+  letter-spacing: -0.06em;
+}
+
+.checkin-intro p {
+  margin: 0;
+  max-width: 54ch;
+  color: var(--muted);
+  font-size: 1.06rem;
+  line-height: 1.7;
+}
+
+.checkin-highlights {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.checkin-highlight-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(9, 32, 36, 0.7);
+  padding: 18px 16px;
+}
+
+.checkin-highlight-card strong {
+  font-size: 1.6rem;
+  letter-spacing: -0.05em;
+}
+
+.checkin-highlight-card span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.checkin-panel {
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(11, 31, 35, 0.94), rgba(8, 24, 28, 0.9));
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.18);
+  padding: 24px;
+}
+
+.checkin-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.checkin-panel-header h3 {
+  margin: 6px 0 0;
+  font-size: clamp(1.5rem, 2vw, 2.1rem);
+  letter-spacing: -0.05em;
+}
+
+.score-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 88px;
+  border: 1px solid rgba(69, 240, 198, 0.35);
+  border-radius: 999px;
+  background: rgba(24, 214, 173, 0.12);
+  color: var(--mint-bright);
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 10px 14px;
+}
+
+.checkin-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.slider-field,
+.select-field {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: var(--foreground);
+}
+
+.slider-field > span,
+.select-field > span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.slider-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--foreground);
+  font-size: 0.95rem;
+}
+
+.slider-meta small {
+  color: var(--muted);
+}
+
+.slider-field input[type="range"] {
+  width: 100%;
+  accent-color: var(--mint);
+}
+
+.select-field {
+  margin-top: 18px;
+}
+
+.select-field select {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--foreground);
+  font: inherit;
+  padding: 0.9rem 1rem;
+}
+
+.checkin-result-box {
+  margin-top: 22px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(16, 38, 43, 0.7);
+  padding: 18px;
+}
+
+.result-summary {
+  margin: 0 0 12px;
+  color: var(--foreground);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.checkin-result-box ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--muted);
+  display: grid;
+  gap: 8px;
+  line-height: 1.65;
+}
+
+@media (max-width: 920px) {
+  .checkin-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .checkin-intro {
+    order: 1;
+  }
+
+  .checkin-panel {
+    order: 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .site-shell {
+    width: min(100% - 20px, 1160px);
+  }
+
+  .checkin-section {
+    padding: 42px 0 28px;
+  }
+
+  .checkin-intro h2 {
+    font-size: clamp(2rem, 9vw, 2.8rem);
+    line-height: 1.08;
+  }
+
+  .checkin-intro p {
+    font-size: 0.98rem;
+  }
+
+  .checkin-highlights,
+  .checkin-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .checkin-highlight-card {
+    padding: 14px 12px;
+  }
+
+  .checkin-panel {
+    padding: 18px 14px;
+    border-radius: 22px;
+  }
+
+  .checkin-panel-header {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .checkin-panel-header h3 {
+    font-size: 1.4rem;
+  }
+
+  .score-badge {
+    min-width: 76px;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+
+  .slider-meta {
+    font-size: 0.8rem;
+  }
+
+  .slider-field > span,
+  .select-field > span {
+    letter-spacing: 0.03em;
+  }
+
+  .select-field select {
+    padding: 0.8rem 0.9rem;
+  }
+
+  .checkin-result-box {
+    padding: 14px 12px;
+  }
+}
+
 .site-header {
   position: sticky;
   z-index: 30;
@@ -117,11 +346,6 @@ a:focus-visible {
   -webkit-backdrop-filter: blur(18px) saturate(145%);
   backdrop-filter: blur(18px) saturate(145%);
   transition: background 180ms ease, border-color 180ms ease;
-}
-
-html.light-mode .site-header {
-  border-bottom-color: rgba(17, 29, 27, 0.08);
-  background: rgba(255, 255, 255, 0.84);
 }
 
 .site-header-inner {
@@ -138,56 +362,6 @@ html.light-mode .site-header {
   font-size: 15px;
   font-weight: 650;
   letter-spacing: -0.045em;
-}
-
-html.light-mode .brand,
-html.light-mode .nav-link,
-html.light-mode .sign-in,
-html.light-mode .feature-card,
-html.light-mode .tool-card,
-html.light-mode .journey-card,
-html.light-mode .insight-card,
-html.light-mode .about-metric,
-html.light-mode .story-card,
-html.light-mode .process-step,
-html.light-mode .image-card,
-html.light-mode .about-quote-panel,
-html.light-mode .section-heading h2,
-html.light-mode .tool-section-header h2,
-html.light-mode .journey-header h2,
-html.light-mode .journey-card h3,
-html.light-mode .feature-card h3,
-html.light-mode .tool-card h3,
-html.light-mode .insight-card h3,
-html.light-mode .story-copy h3,
-html.light-mode .process-step h4,
-html.light-mode .hero h1,
-html.light-mode .calculator-intro h2,
-html.light-mode .hydration-intro h2 {
-  color: var(--foreground);
-}
-
-html.light-mode .eyebrow,
-html.light-mode .section-eyebrow {
-  border-color: rgba(17, 29, 27, 0.08);
-  background: rgba(18, 168, 124, 0.07);
-  color: #0f382f;
-}
-
-html.light-mode .hero-description,
-html.light-mode .journey-header p,
-html.light-mode .feature-card p,
-html.light-mode .tool-card p,
-html.light-mode .insight-card p,
-html.light-mode .about-intro p,
-html.light-mode .story-copy p,
-html.light-mode .process-step p,
-html.light-mode .about-metric span,
-html.light-mode .hydration-intro > p,
-html.light-mode .calculator-intro p,
-html.light-mode .member-intro,
-html.light-mode .journey-card p {
-  color: var(--muted);
 }
 
 .brand-mark {
@@ -222,11 +396,6 @@ html.light-mode .journey-card p {
   transition: color 180ms ease;
 }
 
-html.light-mode .nav-link:hover,
-html.light-mode .sign-in:hover {
-  color: var(--mint-bright);
-}
-
 .nav-link:hover,
 .sign-in:hover {
   color: var(--mint-bright);
@@ -242,35 +411,6 @@ html.light-mode .sign-in:hover {
   align-items: center;
   gap: 22px;
   font-size: 12px;
-}
-
-.theme-toggle {
-  display: grid;
-  place-items: center;
-  width: 38px;
-  height: 38px;
-  border: 1px solid rgba(143, 199, 192, 0.2);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.04);
-  color: currentColor;
-  cursor: pointer;
-  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
-}
-
-.theme-toggle:hover {
-  transform: translateY(-1px);
-  border-color: rgba(69, 240, 198, 0.45);
-  background: rgba(69, 240, 198, 0.07);
-}
-
-.theme-toggle svg {
-  width: 16px;
-  height: 16px;
-}
-
-html.light-mode .theme-toggle {
-  border-color: rgba(17, 29, 27, 0.1);
-  background: rgba(18, 168, 124, 0.06);
 }
 
 .sign-in {

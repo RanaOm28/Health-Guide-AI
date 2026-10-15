@@ -1,24 +1,7 @@
-"use client";
-
 import { Icon } from "@/components/icon";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 export function Header() {
-  const [isLightMode, setIsLightMode] = useState(false);
-
-  useEffect(() => {
-    const savedTheme = window.localStorage.getItem("healthguide-theme");
-    const prefersLight = savedTheme === "light" || (!savedTheme && window.matchMedia("(prefers-color-scheme: light)").matches);
-    setIsLightMode(prefersLight);
-    document.documentElement.classList.toggle("light-mode", prefersLight);
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("light-mode", isLightMode);
-    window.localStorage.setItem("healthguide-theme", isLightMode ? "light" : "dark");
-  }, [isLightMode]);
-
   return (
     <header className="site-header">
       <div className="site-shell site-header-inner">
@@ -61,14 +44,6 @@ export function Header() {
         </nav>
 
         <div className="header-actions">
-          <button
-            aria-label={isLightMode ? "Switch to dark mode" : "Switch to light mode"}
-            className="theme-toggle"
-            onClick={() => setIsLightMode((current) => !current)}
-            type="button"
-          >
-            <Icon name={isLightMode ? "moon" : "sun"} />
-          </button>
           <a className="sign-in" href="/login">
             Sign in
           </a>

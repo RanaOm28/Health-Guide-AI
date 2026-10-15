@@ -7,6 +7,7 @@ import { HydrationEstimator } from "@/components/hydration-estimator";
 import { Hero } from "@/components/hero";
 import { Stats } from "@/components/stats";
 import { WellnessCalculator } from "@/components/wellness-calculator";
+import { WellnessCheckIn } from "@/components/wellness-checkin";
 import { WellnessJourney } from "@/components/wellness-journey";
 import { WellnessPaths } from "@/components/wellness-paths";
 import { WellnessTools } from "@/components/wellness-tools";
@@ -22,6 +23,7 @@ export function LandingPage() {
         <WellnessJourney />
         <WellnessTools />
         <WellnessCalculator />
+        <WellnessCheckIn />
         <WellnessPaths />
         <HydrationEstimator />
         <HealthGuideInsights />

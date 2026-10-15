@@ -20,18 +20,32 @@ function ProgressChart({ entries }: { entries: WeightEntry[] }) {
   const points = useMemo(() => {
     const visible = entries.slice(-8);
     if (!visible.length) return [];
+
     const values = visible.map((entry) => entry.weightKg);
     const min = Math.min(...values);
     const max = Math.max(...values);
     const range = Math.max(max - min, 1);
+    const width = 500;
+    const height = 150;
+    const paddingX = 20;
+    const paddingY = 18;
+    const chartWidth = width - paddingX * 2;
+    const chartHeight = height - paddingY * 2;
+
     return visible.map((entry, index) => ({
       ...entry,
-      x: visible.length === 1 ? 250 : 12 + (index * 476) / (visible.length - 1),
-      y: 126 - ((entry.weightKg - min) / range) * 92,
+      x:
+        visible.length === 1
+          ? width / 2
+          : paddingX + (index * chartWidth) / (visible.length - 1),
+      y:
+        height -
+        paddingY -
+        ((entry.weightKg - min) / range) * chartHeight,
     }));
   }, [entries]);
   const line = points.map(({ x, y }) => `${x},${y}`).join(" ");
-  const area = points.length > 1 ? `12,142 ${line} 488,142` : "";
+  const area = points.length > 1 ? `20,132 ${line} 480,132` : "";
 
   if (!points.length) {
     return (
